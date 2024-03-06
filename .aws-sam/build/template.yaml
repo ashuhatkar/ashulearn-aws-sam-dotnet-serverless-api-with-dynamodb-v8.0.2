@@ -42,7 +42,7 @@ Resources:
   SampleTable:
     Type: AWS::Serverless::SimpleTable
     Properties:
-      TableName: aws-sam-dotnet-serverless-api-with-dynamodbBookCatalog
+      TableName: aws-sam-dotnet-lambdaBookCatalog
       PrimaryKey:
         Name: Id
         Type: String
