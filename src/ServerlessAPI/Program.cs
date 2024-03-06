@@ -9,6 +9,7 @@
 using Amazon;
 using Amazon.DynamoDBv2;
 using Amazon.DynamoDBv2.DataModel;
+using Amazon.Runtime;
 using ServerlessAPI;
 using ServerlessAPI.Repositories;
 using System.Text.Json;
@@ -30,10 +31,21 @@ builder.Services.AddControllers(options =>
     options.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
 });
 
-string region = Environment.GetEnvironmentVariable("AWS_REGION") ?? RegionEndpoint.APSoutheast2.SystemName;
+//string region = Environment.GetEnvironmentVariable("AWS_REGION") ?? RegionEndpoint.APSoutheast2.SystemName;
+
+// Add aws dynamoDb services
+var accessKey = builder.Configuration.GetSection("AWS:AccessKey").Value;
+var secretKey = builder.Configuration.GetSection("AWS:SecretKey").Value;
+var credentials = new BasicAWSCredentials(accessKey, secretKey);
+var config = new AmazonDynamoDBConfig()
+{
+    RegionEndpoint = Amazon.RegionEndpoint.APSoutheast2
+};
+var client = new AmazonDynamoDBClient(credentials, config);
 
 builder.Services
-    .AddSingleton<IAmazonDynamoDB>(new AmazonDynamoDBClient(RegionEndpoint.GetBySystemName(region)))
+    //.AddSingleton<IAmazonDynamoDB>(new AmazonDynamoDBClient(RegionEndpoint.GetBySystemName(region)))
+    .AddSingleton<IAmazonDynamoDB>(client)
     .AddScoped<IDynamoDBContext, DynamoDBContext>()
     .AddScoped(typeof(IRepository<>), typeof(EntityRepository<>));
 
