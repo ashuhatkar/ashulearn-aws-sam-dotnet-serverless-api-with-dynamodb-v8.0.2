@@ -3,22 +3,23 @@ Transform: AWS::Serverless-2016-10-31
 Description: >
   aws-sam-dotnet-serverless-api-with-dynamodb
 
-  Sample SAM Template for aws-sam-dotnet-serverless-api-with-dynamodb
+  Sample SAM Template with AWS Lambda Powertools for aws-sam-dotnet-serverless-api-with-dynamodb
 
 # More info about Globals: https://github.com/awslabs/serverless-application-model/blob/master/docs/globals.rst
 Globals:
   Function:
-    Timeout: 100
+    Timeout: 10
 
 Resources:
   NetCodeWebAPIServerless:
-    Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
+    # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
+    Type: AWS::Serverless::Function
     Properties:
-      Description: A simple example includes a .NET Core WebAPI App with DynamoDB table.
+      Description: A .NET Core WebAPI App with DynamoDB table function w/ AWS Lambda Powertools for .NET
       CodeUri: ./src/ServerlessAPI/
       Handler: ServerlessAPI
       Runtime: dotnet8
-      MemorySize: 1024
+      MemorySize: 256
       Environment: # More info about Env Vars: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#environment-object
         Variables:
           SAMPLE_TABLE: !Ref SampleTable
