@@ -1,6 +1,8 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Transform: AWS::Serverless-2016-10-31
-Description: 'Sample SAM Template for aws-sam-dotnet-serverless-api-with-dynamodb
+Description: 'aws-sam-dotnet-serverless-api-with-dynamodb
+
+  Sample SAM Template for aws-sam-dotnet-serverless-api-with-dynamodb
 
   '
 Globals:

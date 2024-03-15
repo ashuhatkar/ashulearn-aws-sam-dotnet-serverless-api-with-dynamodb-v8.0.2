@@ -43,7 +43,7 @@ public partial class BooksController : BaseApiController
     /// </summary>
     /// <param name="limit"></param>
     /// <returns>List of books</returns>
-    // GET: api/v1/books/List
+    // GET: api/v1/Books/List
     [HttpGet]
     [Route("List")]
     [ProducesResponseType(StatusCodes.Status200OK)]
