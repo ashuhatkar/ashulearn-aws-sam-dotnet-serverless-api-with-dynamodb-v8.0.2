@@ -22,7 +22,7 @@ jobs:
       - name: Restore dependencies
         run: dotnet restore
       - name: Build project
-        run: dotnet build --no-restore --configuration release
+        run: dotnet build --no-restore
       - name: Test project
         run: dotnet test --no-build --verbosity normal
       - name: Setup SAM (Serverless Application Model)
